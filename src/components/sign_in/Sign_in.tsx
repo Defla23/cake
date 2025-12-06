@@ -1,25 +1,27 @@
-import { useState } from "react";
-import Navbar from "../nav/Navbar";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Navbar from "../nav/Navbar";
 import { Footer } from "../footer/Footer";
+import { userAPI } from "../../features/auth/userAPI";
+import {toast} from 'sonner'
 
 type SignInInputs = {
-  first_name: string;
-  last_name: string;
+  name: string;
   email: string;
-  phone_number: string;
+  phone: string;
   password: string;
   confirmPassword: string;
+  address: string;
+
 };
 
 const schema = yup.object({
-  first_name: yup.string().max(50, "Max 50 characters").required("First name is required"),
-  last_name: yup.string().max(50, "Max 50 characters").required("Last name is required"),
+  name: yup.string().max(50, "Max 50 characters").required("Name is required"),
   email: yup.string().email("Invalid email").max(100, "Max 100 characters").required("Email is required"),
-  phone_number: yup.string().max(20, "Max 20 characters").required("Phone number is required"),
-  password: yup.string().min(6, "Min 6 characters").max(255, "Max 255 characters").required("Password is required"),
+  phone: yup.string().max(10, "Max 10 characters").required("Phone number is required"),
+  address: yup.string().max(100, "Max 100 characters").required("Address is required"),
+  password: yup.string().min(6, "Min 6 characters").max(255, "Max 10 characters").required("Password is required"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "Passwords must match")
@@ -27,7 +29,7 @@ const schema = yup.object({
 });
 
 const Sign_in = () => {
-  const [success, setSuccess] = useState(false);
+  const [createUser, {isLoading}] = userAPI.useCreateUsersMutation();
 
   const {
     register,
@@ -37,12 +39,31 @@ const Sign_in = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<SignInInputs> = (data) => {
-    console.log(data);
-    localStorage.setItem("user", JSON.stringify(data));
-    setSuccess(true);
-    // Hide success message after 3 seconds
-    setTimeout(() => setSuccess(false), 3000);
+  const onSubmit: SubmitHandler<SignInInputs> = async (data) => {
+    try {
+      const newUser = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        password: data.password,
+        
+      };
+
+      const response = await createUser(newUser).unwrap();
+      console.log("Response", response);
+
+      // Optional success flow
+       toast.success(response.message);
+      // setTimeout(() => {
+      //   navigate("/verify", { state: { email: data.email } });
+      // }, 2000);
+    } catch (error: any) {
+      console.log("Error", error);
+       toast.error(error.data?.error || "Something went wrong");
+    }
+
+    console.log("Form submitted:", data);
   };
 
   return (
@@ -54,24 +75,18 @@ const Sign_in = () => {
         style={{ backgroundColor: "rgb(166,197,197)" }}
       >
         <div className="w-full max-w-lg p-8 rounded-xl shadow-lg bg-white relative">
-          <h1 className="text-3xl font-bold mb-6 text-center">Welcome Create Your Account </h1>
+          <h1 className="text-3xl font-bold mb-6 text-center">
+            Welcome, Create Your Account
+          </h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <input
               type="text"
-              {...register("first_name")}
-              placeholder="First Name"
+              {...register("name")}
+              placeholder="Full Name"
               className="input border border-gray-300 rounded w-full p-2 text-lg"
             />
-            {errors.first_name && <span className="text-red-700 text-sm">{errors.first_name.message}</span>}
-
-            <input
-              type="text"
-              {...register("last_name")}
-              placeholder="Last Name"
-              className="input border border-gray-300 rounded w-full p-2 text-lg"
-            />
-            {errors.last_name && <span className="text-red-700 text-sm">{errors.last_name.message}</span>}
+            {errors.name && <span className="text-red-700 text-sm">{errors.name.message}</span>}
 
             <input
               type="email"
@@ -83,11 +98,21 @@ const Sign_in = () => {
 
             <input
               type="text"
-              {...register("phone_number")}
+              {...register("phone")}
               placeholder="Phone Number"
               className="input border border-gray-300 rounded w-full p-2 text-lg"
             />
-            {errors.phone_number && <span className="text-red-700 text-sm">{errors.phone_number.message}</span>}
+            {errors.phone && <span className="text-red-700 text-sm">{errors.phone.message}</span>}
+
+            <input
+              type="text"
+              {...register("address")}
+              placeholder="Address"
+              className="input border border-gray-300 rounded w-full p-2 text-lg"
+            />
+            {errors.address && <span className="text-red-700 text-sm">{errors.address.message}</span>}
+
+            
 
             <input
               type="password"
@@ -108,24 +133,24 @@ const Sign_in = () => {
             )}
 
             <button
-              type="submit"
-              className="btn btn-primary w-full mt-4 transition-transform transform hover:scale-105"
-            >
-              Sign In
-            </button>
-          </form>
+  type="submit"
+  className="bg-pink-600 hover:bg-gray-900 text-white font-semibold w-full py-2 rounded-md transition-transform transform hover:scale-105"
+  disabled={isLoading}
+>
+  {isLoading ? (
+    <>
+      <span className="loading loading-spinner text-white mr-2" /> Please Wait...
+    </>
+  ) : (
+    "Register"
+  )}
+</button>
 
-          {success && (
-            <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-90 rounded-xl">
-              <p className="text-gray-900 font-bold text-xl animate-bounce text-center">
-                 Congrats! You have successfully signed in .
-              </p>
-            </div>
-          )}
-        
+          </form>
         </div>
       </div>
-      <Footer/>
+
+      <Footer />
     </>
   );
 };

@@ -23,6 +23,7 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
+              
               <li>
                 <NavLink to="/about" className="text-gray-200 hover:text-gray-400">
                   About
@@ -44,6 +45,11 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/verification" className="text-gray-200 hover:text-gray-400">
+                  Verification
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/login" className="text-gray-200 hover:text-gray-400">
                   Login
                 </NavLink>
@@ -59,6 +65,7 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
+            
             <li>
               <NavLink to="/about" className="text-gray-200 hover:text-gray-400">
                 About
@@ -84,6 +91,11 @@ const Navbar = () => {
                 Sign In
               </NavLink>
             </li>
+            <li>
+                <NavLink to="/verification" className="text-gray-200 hover:text-gray-400">
+                Verification
+                </NavLink>
+              </li>
             <li>
               <NavLink to="/login" className="text-gray-200 hover:text-gray-400">
                 Login

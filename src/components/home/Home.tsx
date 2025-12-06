@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../app/store";
 import photo2 from "../../assets/images/photo2.jpg";
 
 export const Home = () => {
-  const paragraph = "Discover a world of sweetness — from soft sponges to creamy layers, every treat is made with love and a touch of magic. Indulge in our delicious delights and make every moment a little sweeter!";
+  const user = useSelector((state: RootState) => state.user?.user);
+  const name = user?.name; 
+
+  const paragraph =
+    "Discover a world of sweetness — from soft sponges to creamy layers, every treat is made with love and a touch of magic. Indulge in our delicious delights and make every moment a little sweeter!";
   const words = paragraph.split(" ");
 
   const [animate, setAnimate] = useState(false);
@@ -15,13 +21,15 @@ export const Home = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between gap-8 h-fit p-4 md:p-8 bg-white">
+        {/* Left Section */}
         <div className="w-full md:w-1/2 space-y-4">
           <h1
             className={`text-3xl md:text-4xl font-extrabold text-gray-800 leading-tight ${
               animate ? "animate-fadeSlide" : ""
             }`}
           >
-            Welcome to <span className="text-pink-600">Cake Éclair</span>
+            {name ? `Welcome ${name}!` : "Welcome to Cake Éclair "}
+             
           </h1>
 
           <p className="text-base md:text-lg text-gray-700 flex flex-wrap gap-1">
@@ -45,6 +53,7 @@ export const Home = () => {
           </button>
         </div>
 
+        {/* Right Section */}
         <div className="relative group w-full md:w-1/2 border-2 border-gray-200 rounded-2xl overflow-hidden shadow-xl">
           <img
             src={photo2}

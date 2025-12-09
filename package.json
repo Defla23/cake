@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cy": "cypress open"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -33,6 +34,7 @@
     "@types/react": "18.3.27",
     "@types/react-dom": "18.3.7",
     "@vitejs/plugin-react": "^5.0.4",
+    "cypress": "^15.7.1",
     "daisyui": "^5.4.7",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",

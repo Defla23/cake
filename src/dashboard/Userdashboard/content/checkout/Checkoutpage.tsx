@@ -12,7 +12,7 @@ const CheckoutPage: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState<"Cash" | "Mobile" >("Cash");
   const [address, setAddress] = useState<string>("");
 
-  const currentUserId = 1; // replace with actual user id from auth
+  const currentUserId = 1; 
 
   const handleCheckout = async () => {
     if (cart.length === 0) return;
@@ -42,7 +42,7 @@ const CheckoutPage: React.FC = () => {
       clearCart();
     } catch (err) {
       console.error(err);
-      toast.error("Failed to place order. Please try again.");
+       toast.error("Failed to place order. Please try again.");
     }
   };
 
@@ -61,7 +61,7 @@ const CheckoutPage: React.FC = () => {
         Checkout
       </h1>
 
-      {/* Form Section */}
+      
       <div className="grid md:grid-cols-2 gap-6 mb-6">
         <div className="bg-gray-900 p-4 rounded-lg shadow">
           <label className="block mb-2 font-semibold text-white">Delivery Date</label>
@@ -97,7 +97,6 @@ const CheckoutPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Cart Items */}
       <div className="space-y-4 mb-6">
         {cart.map((item) => (
           <div
@@ -119,12 +118,12 @@ const CheckoutPage: React.FC = () => {
         ))}
       </div>
 
-      {/* Total Amount */}
+      
       <div className="bg-linear-to-r from-pink-500 to-yellow-400 text-white p-4 rounded-lg mb-6 shadow-lg">
         <p className="text-lg font-bold text-center">Total: KES {totalPrice}</p>
       </div>
 
-      {/* Confirm Checkout Button */}
+      
       <button
         onClick={handleCheckout}
         disabled={isLoading}
@@ -133,7 +132,7 @@ const CheckoutPage: React.FC = () => {
         {isLoading ? "Placing Order..." : "Confirm Checkout"}
       </button>
 
-      {/* Clear Cart Button */}
+      
       <button
         onClick={clearCart}
         className="w-full bg-linear-to-r from-blue-400 to-gray-900 text-white font-semibold px-4 py-2 rounded transition"

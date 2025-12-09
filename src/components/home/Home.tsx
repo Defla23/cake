@@ -26,9 +26,9 @@ export const Home = () => {
           <h1
             className={`text-3xl md:text-4xl font-extrabold text-gray-800 leading-tight ${
               animate ? "animate-fadeSlide" : ""
-            }`}
+            }`} data-test="Cake Éclair-header"
           >
-            {name ? `Welcome ${name}!` : "Welcome to Cake Éclair "}
+            {name ? `Welcome ${name} to Cake Éclair!` : "Welcome to Cake Éclair "}
              
           </h1>
 

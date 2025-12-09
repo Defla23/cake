@@ -15,8 +15,8 @@ export const About = () => {
           className="w-full md:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-lg"
         />
 
-        <div className="w-full md:w-1/2 border border-gray-300 rounded-lg p-4 md:p-6 bg-gray-50">
-          <h1 className="text-2xl md:text-3xl font-bold mb-3 text-gray-800">
+        <div className="w-full md:w-1/2 border border-gray-300 rounded-lg p-4 md:p-6 bg-gray-50" >
+          <h1 className="text-2xl md:text-3xl font-bold mb-3 text-gray-800" data-test="about-header">
             About Cake Éclair
           </h1>
 

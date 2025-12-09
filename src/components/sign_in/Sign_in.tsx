@@ -6,6 +6,7 @@ import { Footer } from "../footer/Footer";
 import { userAPI } from "../../features/auth/userAPI";
 import {toast} from 'sonner'
 
+
 type SignInInputs = {
   name: string;
   email: string;
@@ -75,12 +76,13 @@ const Sign_in = () => {
         style={{ backgroundColor: "rgb(166,197,197)" }}
       >
         <div className="w-full max-w-lg p-8 rounded-xl shadow-lg bg-white relative">
-          <h1 className="text-3xl font-bold mb-6 text-center">
+          <h1 className="text-3xl font-bold mb-6 text-center" data-test="sign_in-header">
             Welcome, Create Your Account
           </h1>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-test="sign_in-form">
             <input
+            data-test="sign_in-name"
               type="text"
               {...register("name")}
               placeholder="Full Name"
@@ -89,6 +91,7 @@ const Sign_in = () => {
             {errors.name && <span className="text-red-700 text-sm">{errors.name.message}</span>}
 
             <input
+            data-test="sign_in-email"
               type="email"
               {...register("email")}
               placeholder="Email"
@@ -97,6 +100,7 @@ const Sign_in = () => {
             {errors.email && <span className="text-red-700 text-sm">{errors.email.message}</span>}
 
             <input
+            data-test="sign_in-phone"
               type="text"
               {...register("phone")}
               placeholder="Phone Number"
@@ -105,6 +109,7 @@ const Sign_in = () => {
             {errors.phone && <span className="text-red-700 text-sm">{errors.phone.message}</span>}
 
             <input
+            data-test="sign_in-address"
               type="text"
               {...register("address")}
               placeholder="Address"
@@ -115,6 +120,7 @@ const Sign_in = () => {
             
 
             <input
+            data-test="sign_in-password"
               type="password"
               {...register("password")}
               placeholder="Password"
@@ -123,6 +129,7 @@ const Sign_in = () => {
             {errors.password && <span className="text-red-700 text-sm">{errors.password.message}</span>}
 
             <input
+            data-test="sign_in-confirmpassword"
               type="password"
               {...register("confirmPassword")}
               placeholder="Confirm Password"
@@ -133,6 +140,7 @@ const Sign_in = () => {
             )}
 
             <button
+            data-test="sign_in-submitbtn"
   type="submit"
   className="bg-pink-600 hover:bg-gray-900 text-white font-semibold w-full py-2 rounded-md transition-transform transform hover:scale-105"
   disabled={isLoading}
@@ -145,6 +153,7 @@ const Sign_in = () => {
     "Register"
   )}
 </button>
+
 
           </form>
         </div>

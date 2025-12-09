@@ -69,10 +69,11 @@ const navigate = useNavigate()
 
       <div className="flex justify-center items-center min-h-screen bg-[rgb(166,197,197)]">
         <div className="w-full max-w-lg p-8 rounded-xl shadow-lg bg-white">
-          <h1 className="text-3xl font-bold mb-6 text-center">Welcome back</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center" data-test="login-header">Welcome back</h1>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-test="login-form">
             <input
+             data-test="login-email-input"
               type="email"
               {...register("email")}
               placeholder="Email"
@@ -81,6 +82,7 @@ const navigate = useNavigate()
             {errors.email && <span className="text-sm text-red-700">{errors.email.message}</span>}
 
             <input
+            data-test="login-password-input"
               type="password"
               {...register("password")}
               placeholder="Password"
@@ -89,6 +91,7 @@ const navigate = useNavigate()
             {errors.password && <span className="text-sm text-red-700">{errors.password.message}</span>}
 
             <button
+            data-test="login-submit-button"
               type="submit"
               className="bg-pink-600 hover:bg-gray-900 text-white font-semibold w-full py-2 rounded-md transition-transform transform hover:scale-105"
               disabled={isLoading}

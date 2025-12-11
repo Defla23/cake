@@ -15,7 +15,7 @@ export type TUser = {
 }
 
 
-// User creation
+
 
 export const userAPI = createApi({ 
     reducerPath: 'usersAPI', 

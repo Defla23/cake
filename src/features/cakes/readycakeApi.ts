@@ -12,9 +12,7 @@ export type readycakes = {
     quantityAvailable: number;
 };
 
-// export type CakeResponse = {
-//     data: readycakes[];
-// };
+
 
 export const readyCakesAPI = createApi({
     reducerPath: 'readyCakesAPI',
@@ -30,7 +28,7 @@ export const readyCakesAPI = createApi({
     }),
     tagTypes: ['Cakes'],
     endpoints: (builder) => ({
-        // ✔ FIXED — added /api
+       
         getAllCakes: builder.query<readycakes[], void>({
             query: () => '/api/readycakes',
             providesTags: ['Cakes']

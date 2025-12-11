@@ -21,7 +21,6 @@ export const Home = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between gap-8 h-fit p-4 md:p-8 bg-white">
-        {/* Left Section */}
         <div className="w-full md:w-1/2 space-y-4">
           <h1
             className={`text-3xl md:text-4xl font-extrabold text-gray-800 leading-tight ${
@@ -53,7 +52,6 @@ export const Home = () => {
           </button>
         </div>
 
-        {/* Right Section */}
         <div className="relative group w-full md:w-1/2 border-2 border-gray-200 rounded-2xl overflow-hidden shadow-xl">
           <img
             src={photo2}

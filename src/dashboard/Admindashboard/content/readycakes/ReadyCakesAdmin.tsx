@@ -27,7 +27,7 @@ export default function Readycakes() {
       <DeleteReadyCake readycake={selectedCakeToDelete} />
 
       <div className="flex justify-center mb-6">
-  <button
+  <button data-test="cakecreate-btn"
     className="bg-pink-500 hover:bg-gray-900 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-colors duration-300"
     onClick={() =>
       (document.getElementById("add_modal") as HTMLDialogElement)?.showModal()
@@ -59,7 +59,7 @@ export default function Readycakes() {
               <p>Available: {cake.quantityAvailable}</p>
 
               <div className="flex gap-2 mt-3">
-                <button
+                <button data-test="cakeedit-btn"
   className="btn btn-sm btn-primary text-blue-500"
   onClick={() => {
     setSelectedCakeToEdit(cake);
@@ -71,6 +71,7 @@ export default function Readycakes() {
 
 
                 <button
+                data-test="cakedel-btn"
                   className="btn btn-sm btn-primary text-red-500"
                   onClick={() => {
                     setSelectedCakeToDelete(cake); // ✅ Set cake for deletion

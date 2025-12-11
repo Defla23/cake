@@ -14,8 +14,8 @@ type UpdateOrderInputs = {
   Size: string;
   Flavor: string;
   Message: string;
-  Status: string; // pending, confirmed, baking, ready, completed
-  PaymentStatus: string; // unpaid, paid
+  Status: string; 
+  PaymentStatus: string; 
   Price: number;
   SampleImages: string;
   ColorPreferences: string;
@@ -51,7 +51,6 @@ export const UpdateOrder = ({ order }: UpdateOrderProps) => {
   
   });
 
-  // Populate the form when order changes
   useEffect(() => {
     if (order) {      
       setValue("Price", order.Price);

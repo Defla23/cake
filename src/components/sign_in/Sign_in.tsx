@@ -54,11 +54,8 @@ const Sign_in = () => {
       const response = await createUser(newUser).unwrap();
       console.log("Response", response);
 
-      // Optional success flow
        toast.success(response.message);
-      // setTimeout(() => {
-      //   navigate("/verify", { state: { email: data.email } });
-      // }, 2000);
+      
     } catch (error: any) {
       console.log("Error", error);
        toast.error(error.data?.error || "Something went wrong");
@@ -72,7 +69,7 @@ const Sign_in = () => {
       <Navbar />
 
       <div
-        className="flex justify-center items-center min-h-screen relative"
+        className="flex justify-center items-center min-h-screen relative"                    
         style={{ backgroundColor: "rgb(166,197,197)" }}
       >
         <div className="w-full max-w-lg p-8 rounded-xl shadow-lg bg-white relative">

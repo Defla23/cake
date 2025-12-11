@@ -35,16 +35,16 @@ export const Design = () => {
 
  const handleCreateDesign = async () => {
   try {
-    // Check required fields
+    
     if (!newDesign.DesignName || !newDesign.Size || !newDesign.Category) {
       alert('Please fill in all required fields: Name, Size, Category.');
       return;
     }
 
-    // Add imageUrl to match backend requirement
+    
     const payload = {
       ...newDesign,
-      ImageUrl: '', // or a default image URL
+      ImageUrl: '', 
     };
 
     await createDesign(payload).unwrap();
@@ -84,7 +84,7 @@ export const Design = () => {
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-6">At Cake Éclair, every bite tells a story of sweetness and passion</h2>
 
-      {/* Add New Design Form */}
+     
       <div className="mb-8 p-6 bg-gray-900 border-2 border-gray-900 rounded-lg shadow-md">
         <h3 className="text-lg font-semibold mb-4 text-white border-b border-gray-900 pb-2">Add New Design</h3>
 
@@ -134,14 +134,7 @@ export const Design = () => {
 
                     </div>
 
-          {/* <input
-            type="number"
-            name="Availability"
-            placeholder="Availability"
-            value={newDesign.Availability}
-            onChange={handleInputChange}
-            className="input input-bordered w-full border-2 bg-white placeholder-gray-900 border-gray-900 text-black focus:border-pink-500 focus:ring focus:ring-pink-900"
-          /> */}
+          
           <select
             name="Size"
             value={newDesign.Size}
@@ -172,7 +165,7 @@ export const Design = () => {
         </button>
       </div>
 
-      {/* Designs Table */}
+     
       <div className="overflow-x-auto">
         <table className="table w-full border border-gray-900">
           <thead className="bg-gray-200">
@@ -209,9 +202,7 @@ export const Design = () => {
             ))}
           </tbody>
         </table>
-        {/* <a href="/userorders" className="btn btn-primary">
-  Go to Orders
-</a> */}
+       
 
       </div>
     </div>

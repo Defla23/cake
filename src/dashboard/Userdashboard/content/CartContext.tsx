@@ -4,8 +4,8 @@ import type { readycakes } from "../../../features/cakes/readycakeApi";
 import type { Design } from "../../../features/cakes/designsApi";
 
 type CartItem = {
-  cakeId: number; // readycakes cakeId or DesignID
-  name: string;   // cakeName or DesignName
+  cakeId: number; 
+  name: string;   
   price: number;
   quantity: number;
   imageURL?: string;
@@ -26,7 +26,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Add ready-made cake to cart
+  
   const addToCart = (cake: readycakes) => {
     setCart(prev => {
       const existing = prev.find(item => item.cakeId === cake.cakeId);
@@ -50,7 +50,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // Add custom design to cart with automatic price based on size
+  
   const addDesignToCart = (design: Design) => {
     const getPrice = (size?: string) => {
       switch (size?.toLowerCase()) {
@@ -86,15 +86,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // Remove an item from cart
+  
   const removeFromCart = (cakeId: number) => {
     setCart(prev => prev.filter(item => item.cakeId !== cakeId));
   };
 
-  // Clear the cart
+ 
   const clearCart = () => setCart([]);
 
-  // Calculate total price
+  
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -104,7 +104,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Custom hook for consuming the cart
+
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) throw new Error("useCart must be used within a CartProvider");

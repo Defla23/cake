@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetAllOrdersQuery } from "../../../../features/cakes/ordersAPI";
 import { useGetAllDesignsQuery } from "../../../../features/cakes/designsApi";
 import { useGetUsersQuery } from "../../../../features/cakes/adminUsersAPI";
@@ -7,7 +6,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, Cart
 
 const COLORS = ["#FBBF24", "#10B981", "#3B82F6", "#EF4444", "#A855F7"];
 
-const Analytics: React.FC = () => {
+export default function Analytics ()  {
   const { data: orders, isLoading: loadingOrders, isError: errorOrders } = useGetAllOrdersQuery();
   const { data: designs } = useGetAllDesignsQuery();
   const { data: users } = useGetUsersQuery();
@@ -15,34 +14,34 @@ const Analytics: React.FC = () => {
   if (loadingOrders || !designs || !users) return <p>Loading analytics...</p>;
   if (errorOrders) return <p>Failed to load analytics.</p>;
 
-  // --- Totals ---
+  
   const totalOrders = orders?.length || 0;
   const totalRevenue = orders?.reduce((sum, order) => sum + order.Price, 0) || 0;
   const totalUsers = users?.length || 0;
 
-  // --- Orders by Status ---
+ 
   const ordersByStatus = orders?.reduce((acc, order) => {
     acc[order.Status] = (acc[order.Status] || 0) + 1;
     return acc;
   }, {} as Record<string, number>) || {};
   const pieDataStatus = Object.entries(ordersByStatus).map(([name, value]) => ({ name, value }));
 
-  // --- Orders by Payment ---
+
   const ordersByPayment = orders?.reduce((acc, order) => {
     const key = order.PaymentStatus || "Paid on Delivery";
-    acc[key] = (acc[key] || 0) + order.Price; // sum revenue per payment type
+    acc[key] = (acc[key] || 0) + order.Price; 
     return acc;
   }, {} as Record<string, number>) || {};
   const barDataPayment = Object.entries(ordersByPayment).map(([name, value]) => ({ name, value }));
 
-  // --- Orders by Category ---
+  
   const ordersByCategory = orders?.reduce((acc, order) => {
     const category = designs.find(d => d.DesignID === order.DesignID)?.Category || "Custom";
     acc[category] = (acc[category] || 0) + 1;
     return acc;
   }, {} as Record<string, number>) || {};
 
-  // --- Top Designs ---
+ 
   const topDesigns = orders?.reduce((acc, order) => {
     if (order.DesignID) acc[order.DesignID] = (acc[order.DesignID] || 0) + 1;
     return acc;
@@ -58,7 +57,7 @@ const Analytics: React.FC = () => {
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Analytics Dashboard</h1>
 
-      {/* Totals */}
+      
       <div className="flex gap-4 mb-6">
         <div className="flex items-center gap-2 bg-linear-to-r from-pink-500 to-yellow-500 text-white p-4 rounded-lg flex-1">
           <UsersIcon className="w-8 h-8" />
@@ -83,9 +82,9 @@ const Analytics: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Flex */}
+    
       <div className="flex gap-6 flex-wrap">
-        {/* Tables */}
+       
         <div className="flex-1 overflow-x-auto shadow-xl rounded-lg">
           <h2 className="font-semibold mb-2">Orders by Category</h2>
           <table className="min-w-full bg-white border rounded-lg mb-4">
@@ -124,7 +123,7 @@ const Analytics: React.FC = () => {
           </table>
         </div>
 
-        {/* Charts */}
+      
         <div className="flex-1">
           <div className="mb-6 bg-linear-to-r from-purple-500 to-pink-500 p-4 rounded-lg text-white">
             <h2 className="font-semibold mb-4">Orders by Status</h2>
@@ -165,4 +164,4 @@ const Analytics: React.FC = () => {
   );
 };
 
-export default Analytics;
+

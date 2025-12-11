@@ -16,7 +16,6 @@ export default function OrderList(){
 
 
   console.log(deleteOrderId)
-  // Helpers
   const getDesign = (id: number | null) => designs?.find((d) => d.DesignID === id);
   const getDesignName = (id: number | null) => getDesign(id)?.DesignName || "N/A";
   const getCategory = (id: number | null) => getDesign(id)?.Category || "N/A";

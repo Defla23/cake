@@ -18,7 +18,6 @@ export const UpdateReadyCake = ({ readycake }: UpdateReadyCakeProps) => {
     imageURL: "",
   });
 
-  // Load selected cake into form
   useEffect(() => {
     if (readycake) {
       setFormData({
@@ -127,7 +126,7 @@ export const UpdateReadyCake = ({ readycake }: UpdateReadyCakeProps) => {
             onChange={handleChange}
           />
 
-          {/* Size Dropdown with arrows */}
+          
           <select
             name="size"
             value={formData.size}
@@ -139,7 +138,7 @@ export const UpdateReadyCake = ({ readycake }: UpdateReadyCakeProps) => {
             <option value="Large">Large</option>
           </select>
 
-          {/* Price field (auto-calculated) */}
+          
           <input
             type="number"
             name="price"

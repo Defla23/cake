@@ -42,7 +42,6 @@ export const Testimonials = () => {
           What Our Customers Say
         </h2>
 
-        {/* Grid layout for testimonials */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((t, idx) => (
             <div

@@ -64,6 +64,7 @@ export default function Users() {
                   </td>
                   <td className="px-4 py-2 flex gap-2">
                     <button
+                     data-test="useredit-btn"
                       className="btn bg-cyan-500 btn-sm btn-primary"
                       onClick={() => {
                         setSelectedUser(user);

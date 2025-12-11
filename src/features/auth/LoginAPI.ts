@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { ApiDomain } from "../../utils/ApiDomain";
 
-//response on login
+
 export type TLoginResponse = {
     message: string,
     token: string,
@@ -16,7 +16,7 @@ export type TLoginResponse = {
     }
 }
 
-// inputs to login
+
 type LoginInputs = {
     email: string;
     password: string;

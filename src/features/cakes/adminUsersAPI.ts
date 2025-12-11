@@ -20,7 +20,7 @@ export const adminUsersAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: ApiDomain }),
   tagTypes: ['Users'],
   endpoints: (builder) => ({
-    // Create new user
+   
     createUser: builder.mutation<{ message: string }, Partial<TUser>>({
       query: (newUser) => ({
         url: '/users/register',
@@ -30,7 +30,7 @@ export const adminUsersAPI = createApi({
       invalidatesTags: ['Users'],
     }),
 
-    // Verify user
+    
     verifyUser: builder.mutation<{ message: string }, { email: string; code: string }>({
       query: (data) => ({
         url: '/users/verify',
@@ -40,7 +40,7 @@ export const adminUsersAPI = createApi({
       invalidatesTags: ['Users'],
     }),
 
-    // Resend verification code
+    
     resendVerificationCode: builder.mutation<{ message: string }, { email: string }>({
       query: (data) => ({
         url: '/users/verify/resend',
@@ -50,7 +50,6 @@ export const adminUsersAPI = createApi({
       invalidatesTags: ['Users'],
     }),
 
-    // Get all users
    getUsers: builder.query<TUser[], void>({
   query: () => '/users',
   transformResponse: (response: any) => response.data || response, 
@@ -58,12 +57,12 @@ export const adminUsersAPI = createApi({
 }),
 
 
-    // Get user by ID
+   
     getUserById: builder.query<TUser, number>({
       query: (id) => `/users/${id}`,
     }),
 
-    // Update user / role
+   
     updateUser: builder.mutation<{ message: string }, { id: number; updates: Partial<TUser> }>({
       query: ({ id, updates }) => ({
         url: `/users/${id}`,
@@ -73,7 +72,7 @@ export const adminUsersAPI = createApi({
       invalidatesTags: ['Users'],
     }),
 
-    // Delete user
+    
     deleteUser: builder.mutation<{ message: string }, number>({
       query: (id) => ({
         url: `/users/${id}`,

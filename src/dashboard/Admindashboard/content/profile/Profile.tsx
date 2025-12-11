@@ -39,8 +39,8 @@ export const Profile = () => {
 
   const handleLogout = () => {
     dispatch(logOut());
-    localStorage.removeItem("token"); // optional if token stored
-    window.location.href = "/login";   // redirect to login page
+    localStorage.removeItem("token"); 
+    window.location.href = "/login";   
   };
 
   const getInitials = (name: string) => {
@@ -55,7 +55,7 @@ export const Profile = () => {
       className="max-w-md mx-auto p-6 rounded-xl shadow-lg text-white"
       style={{ background: "linear-gradient(to right, gray, white)" }}
     >
-      {/* Avatar */}
+      
       <div className="flex justify-center mb-6">
         <div className="w-24 h-24 rounded-full bg-white flex items-center justify-center text-3xl font-bold text-pink-500">
           {getInitials(user.name)}
@@ -64,14 +64,14 @@ export const Profile = () => {
 
       <h1 className="text-3xl font-bold mb-4 text-center">{user.name}</h1>
 
-      {/* Always Verified Badge */}
+     
       <div className="text-center mb-6">
         <span className="px-3 py-1 rounded-lg text-sm font-semibold bg-green-600">
           Verified Account
         </span>
       </div>
 
-      {/* Email */}
+      
       <div className="mb-4">
         <label className="font-semibold">Email:</label>
         {editable ? (
@@ -88,7 +88,7 @@ export const Profile = () => {
         )}
       </div>
 
-      {/* Phone */}
+     
       <div className="mb-4">
         <label className="font-semibold">Phone:</label>
         {editable ? (
@@ -105,7 +105,7 @@ export const Profile = () => {
         )}
       </div>
 
-      {/* Address */}
+      
       <div className="mb-4">
         <label className="font-semibold">Address:</label>
         {editable ? (
@@ -121,19 +121,19 @@ export const Profile = () => {
         )}
       </div>
 
-      {/* Role */}
+      
       <div className="mb-4">
         <label className="font-semibold">Role:</label>
         <p>{user.role}</p>
       </div>
 
-      {/* Account Creation */}
+     
       <div className="mb-6">
         <label className="font-semibold">Account Created:</label>
         <p>{dayjs(user.Created_At).format("MMMM D, YYYY")}</p>
       </div>
 
-      {/* Edit / Save Button */}
+      
       <button
         onClick={editable ? handleSave : handleEditClick}
         className="bg-white text-pink-500 font-bold py-2 px-4 rounded hover:bg-gray-200 w-full mb-4"
@@ -141,7 +141,7 @@ export const Profile = () => {
         {editable ? "Save" : "Edit Profile"}
       </button>
 
-      {/* Logout Button */}
+      
       <button
         onClick={handleLogout}
         className="bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-800 w-full"

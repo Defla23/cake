@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router"; // ✅ import useNavigate
+import { Outlet, useNavigate } from "react-router"; 
 import Navbar from "../../../components/nav/Navbar";
 import { UserDrawer } from "../aside/UserDrawer";
 import { IoMdClose } from "react-icons/io";
@@ -11,21 +11,21 @@ const UserDashboard = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const { cart, totalPrice, removeFromCart, clearCart } = useCart();
-  const navigate = useNavigate(); // ✅ hook to navigate
+  const navigate = useNavigate(); 
 
   const handleDrawerToggle = () => setDrawerOpen((prev) => !prev);
   const handleCartToggle = () => setCartOpen((prev) => !prev);
 
   const goToCheckout = () => {
-    navigate("/user/dashboard/checkout"); // ✅ navigate to your checkout route
-    setCartOpen(false); // optional: close cart dropdown
+    navigate("/user/dashboard/checkout"); 
+    setCartOpen(false); 
   };
 
   return (
     <div className="relative">
       <Navbar />
 
-      {/* Header with drawer toggle and cart */}
+      
       <div className="flex items-center px-4 py-4 bg-teal-500 text-white relative">
         <button className="mr-4 text-2xl lg:hidden" onClick={handleDrawerToggle}>
           {drawerOpen ? <IoMdClose /> : <FaBars />}
@@ -34,9 +34,9 @@ const UserDashboard = () => {
           Welcome✨, Your Sweet Journey Starts Here🧁 Where Every Slice Feels Special 🎂🍰
         </span>
 
-        {/* Cart icon */}
+        
         <div className="ml-auto relative cursor-pointer" onClick={handleCartToggle}>
-          <TiShoppingCart size={28} />
+          <TiShoppingCart size={50} />
           {cart.length > 0 && (
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
               {cart.length}
@@ -44,7 +44,7 @@ const UserDashboard = () => {
           )}
         </div>
 
-        {/* Cart dropdown */}
+       
         {cartOpen && (
           <div className="absolute right-4 top-14 text-pink-600 bg-gray-900 border shadow-lg p-4 w-80 z-50 max-h-96 overflow-auto">
             {cart.length === 0 ? (
@@ -67,7 +67,7 @@ const UserDashboard = () => {
                 <li className="mt-2 flex flex-col gap-2">
                   <button
                     className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium"
-                    onClick={goToCheckout} // ✅ added handler
+                    onClick={goToCheckout} 
                   >
                     Go to Checkout
                   </button>
@@ -85,7 +85,7 @@ const UserDashboard = () => {
       </div>
 
       <div className="flex flex-1">
-        {/* Sidebar / drawer */}
+        
         <aside
           className={`fixed top-0 z-40 w-64 bg-gray-600 ${drawerOpen ? "" : "hidden"} lg:static lg:block lg:w-64`}
           style={{ minHeight: "100vh" }}
@@ -101,7 +101,7 @@ const UserDashboard = () => {
           </div>
         </aside>
 
-        {/* Main content */}
+       
         <main className="flex-1 bg-green-200 min-h-screen p-4">
           <Outlet />
         </main>

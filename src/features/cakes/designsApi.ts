@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ApiDomain } from "../../utils/ApiDomain";
 import type { RootState } from "../../app/store";
 
-// Design type (matches backend database)
+
 export type Design = {
   DesignID: number;
   DesignName: string;
@@ -12,16 +12,12 @@ export type Design = {
   Availability: boolean;
   Size: string;
   ImageUrl: string;
-  // Status: string;
+
   Category: string;
   CreatedAt?: string;
   UpdatedAt?: string;
 };
 
-// Response type for multiple designs
-// export type DesignResponse = {
-//   data: Design;
-// };
 
 export const designAPI = createApi({
   reducerPath: 'designAPI',
@@ -37,19 +33,19 @@ export const designAPI = createApi({
   }),
   tagTypes: ['Designs'],
   endpoints: (builder) => ({
-    // Fetch all designs
+   
     getAllDesigns: builder.query<Design[], void>({
       query: () => '/designs',
       providesTags: ['Designs']
     }),
 
-    // Fetch single design by ID
+    
     getDesignById: builder.query<Design, number>({
       query: (id) => `/designs/${id}`,
       providesTags: ['Designs']
     }),
 
-    // Create new design (matches backend keys)
+    
     createDesign: builder.mutation<Design, {
       DesignName: string;
       Description: string;
@@ -67,7 +63,7 @@ export const designAPI = createApi({
       invalidatesTags: ['Designs']
     }),
 
-    // Update existing design
+   
     updateDesign: builder.mutation<Design, {
       id: number;
       design: {
@@ -88,7 +84,7 @@ export const designAPI = createApi({
       invalidatesTags: ['Designs']
     }),
 
-    // Delete design
+    
     deleteDesign: builder.mutation<{ success: boolean; id: number }, number>({
       query: (id) => ({
         url: `/designs/${id}`,

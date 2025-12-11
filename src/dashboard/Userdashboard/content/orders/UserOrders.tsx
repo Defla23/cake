@@ -1,9 +1,9 @@
-import React from "react";
+
 import { designAPI, type Design } from "../../../../features/cakes/designsApi";
-import { useCart } from "../CartContext"; // your existing cart context
+import { useCart } from "../CartContext"; 
 import { CakeImages } from "../../../../assets/CakeImages";
 
-const CustomersOrdersPage: React.FC = () => {
+export default function CustomersOrdersPage ()  {
   const { data, isLoading, isError } = designAPI.useGetAllDesignsQuery();
   const designs = data || [];
   const { addDesignToCart } = useCart();
@@ -12,7 +12,7 @@ const CustomersOrdersPage: React.FC = () => {
   if (isError) return <p className="p-4 text-red-600">Failed to load designs.</p>;
   if (!designs || designs.length === 0) return <p className="p-4">No designs found.</p>;
 
-  // Price calculation based on size
+  
   const getPrice = (size?: string) => {
     switch (size?.toLowerCase()) {
       case "small":
@@ -64,5 +64,3 @@ const CustomersOrdersPage: React.FC = () => {
     </div>
   );
 };
-
-export default CustomersOrdersPage;

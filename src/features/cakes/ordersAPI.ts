@@ -2,7 +2,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ApiDomain } from "../../utils/ApiDomain";
 
-// Order type (matches backend)
 export type Order = {
   Id: number;
   userid: number;
@@ -10,8 +9,8 @@ export type Order = {
   Size:string;
   Flavor: string;
   Message: string;
-  Status: string; // pending, confirmed, baking, ready, completed
-  PaymentStatus: string; // unpaid, paid
+  Status: string; 
+  PaymentStatus: string; 
   Price: number;
   SampleImages: string;
   ColorPreferences: string;
@@ -21,7 +20,7 @@ export type Order = {
   UpdatedAt: string;
 };
 
-// Create Order DTO
+
 export type CreateOrderDto = {
   userid: number;
   DesignID?: number;
@@ -42,28 +41,27 @@ export const orderAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: ApiDomain }),
   tagTypes: ["Orders"],
   endpoints: (builder) => ({
-    // Fetch all orders
+    
     getAllOrders: builder.query<Order[], void>({
       query: () => "/orders",
       transformResponse: (response: any) => response.data || response,
       providesTags: ["Orders"],
     }),
 
-    // Fetch order by ID
     getOrderById: builder.query<Order, number>({
       query: (id) => `/orders/${id}`,
       transformResponse: (response: any) => response.data || response,
       providesTags: ["Orders"],
     }),
 
-    // Fetch orders by user
+    
     getOrdersByUser: builder.query<Order[], number>({
       query: (userid) => `/user/orders/${userid}`,
       transformResponse: (response: any) => response.data || response,
       providesTags: ["Orders"],
     }),
 
-    // Create new order
+    
     createOrder: builder.mutation<Order, CreateOrderDto>({
       query: (order) => ({
         url: "/orders",
@@ -74,7 +72,7 @@ export const orderAPI = createApi({
       invalidatesTags: ["Orders"],
     }),
 
-    // Update order status
+   
     updateOrderStatus: builder.mutation<
       Order,
       { OrderID: number; Status: string }
@@ -88,7 +86,6 @@ export const orderAPI = createApi({
       invalidatesTags: ["Orders"],
     }),
 
-    // Update order details
     updateOrderDetails: builder.mutation<
       Order,
       { OrderID: number; data: Partial<Order> }
@@ -102,7 +99,7 @@ export const orderAPI = createApi({
       invalidatesTags: ["Orders"],
     }),
 
-    // Delete order
+    
     deleteOrder: builder.mutation<{ success: boolean }, number>({
       query: (OrderID) => ({
         url: `/orders/${OrderID}`,

@@ -1,18 +1,16 @@
-import React from "react";
+
 import { designAPI, type Design } from "../../../../features/cakes/designsApi";
-//import { useCart } from "../../../Userdashboard/content/CartContext"; 
 import { CakeImages } from "../../../../assets/CakeImages";
 
-const CustomDesign: React.FC = () => {
+export default function CustomDesign ()  {
   const { data, isLoading, isError } = designAPI.useGetAllDesignsQuery();
   const designs = data || [];
-  //const { addDesignToCart } = useCart();
+ 
 
   if (isLoading) return <p className="p-4">Loading designs...</p>;
   if (isError) return <p className="p-4 text-red-600">Failed to load designs.</p>;
   if (!designs || designs.length === 0) return <p className="p-4">No designs found.</p>;
 
-  // Price calculation based on size
   const getPrice = (size?: string) => {
     switch (size?.toLowerCase()) {
       case "small":
@@ -51,12 +49,7 @@ const CustomDesign: React.FC = () => {
             
 
          
-              {/* <button
-                onClick={() => addDesignToCart(design)}
-                className="mt-3 bg-pink-500 text-white px-3 py-2 rounded"
-              >
-                Add to Cart
-              </button> */}
+              
            
           </div>
         ))}
@@ -65,4 +58,4 @@ const CustomDesign: React.FC = () => {
   );
 };
 
-export default CustomDesign;
+

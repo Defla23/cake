@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//either a user is logged in or logout
+
 export type UserState = {
     token: string | null;
     user: {
@@ -15,7 +15,7 @@ export type UserState = {
     } | null;
 }
 
-//no user in the system
+
 const initialState: UserState = {
     token: null,
     user: null

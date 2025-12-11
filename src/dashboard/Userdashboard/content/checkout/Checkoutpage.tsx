@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useCart } from "../CartContext";
 import { useCreateOrderMutation } from "../../../../features/cakes/ordersAPI";
 import { toast } from "sonner";
 
-const CheckoutPage: React.FC = () => {
+export default function CheckoutPage ()  {
   const { cart, removeFromCart, clearCart, totalPrice } = useCart();
   const [createOrder, { isLoading }] = useCreateOrderMutation();
   const [deliveryDate, setDeliveryDate] = useState<string>(
@@ -42,7 +42,7 @@ const CheckoutPage: React.FC = () => {
       clearCart();
     } catch (err) {
       console.error(err);
-       toast.error("Failed to place order. Please try again.");
+      
     }
   };
 
@@ -143,4 +143,4 @@ const CheckoutPage: React.FC = () => {
   );
 };
 
-export default CheckoutPage;
+
